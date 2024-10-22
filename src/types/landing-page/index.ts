@@ -9,7 +9,6 @@ import type { IConfigReducers } from "@/types/config";
 export interface ILandingPageProps {
   landingPage?: ILandingPageData;
   products: IProduct[];
-  simillarProductButtonRoute?: any;
   gameInfo?: IGameInfo;
   productsPage?: number;
   productsPerPage?: number;
