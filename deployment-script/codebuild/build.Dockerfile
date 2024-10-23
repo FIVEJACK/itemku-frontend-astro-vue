@@ -7,7 +7,7 @@ ADD dist /app/dist
 ADD .astro /app/.astro
 
 COPY package.json /app
-COPY astro.config.js /app
+COPY astro.config.mjs /app
 
 ARG port
 ENV envPort $port
