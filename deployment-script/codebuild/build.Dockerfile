@@ -4,6 +4,7 @@ WORKDIR /app
 
 ADD public /app/public
 ADD dist /app/dist
+ADD .astro /app/.astro
 
 COPY package.json /app
 COPY astro.config.js /app
