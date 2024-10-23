@@ -21,6 +21,7 @@ phases:
     commands:
       - echo Build started on `date` for $CODEBUILD_SOURCE_REPO_URL using $CODEBUILD_RESOLVED_SOURCE_VERSION
       - export COMMIT_ID=$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - npm install
       - npm run build
       - >
         docker build --cache-from $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/itemku-next:itemku-astro-vue
