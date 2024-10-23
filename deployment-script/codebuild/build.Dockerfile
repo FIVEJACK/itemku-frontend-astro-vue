@@ -34,6 +34,8 @@ ENV envPort $port
 # RUN --mount=type=cache,target=/root/.yarn-cache YARN_CACHE_FOLDER=/root/.yarn-cache yarn install --frozen-lockfile --production
 # RUN find . -name "*.map" -type f -delete
 
+RUN npm install -g astro
+
 # Run application
 EXPOSE $port
 ENTRYPOINT PORT=${envPort} npm run preview
