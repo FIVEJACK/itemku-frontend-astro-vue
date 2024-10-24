@@ -3,11 +3,10 @@ FROM node:18-alpine
 WORKDIR /app
 
 COPY public /app/public
-COPY dist /app/dist
 COPY .astro /app/.astro
 COPY package.json /app
 COPY astro.config.mjs /app
-COPY node_modules /app/node_modules
+COPY src /app/src
 
 ARG port
 ENV envPort $port
@@ -34,9 +33,9 @@ ENV envPort $port
 # RUN --mount=type=cache,target=/root/.yarn-cache YARN_CACHE_FOLDER=/root/.yarn-cache yarn install --frozen-lockfile --production
 # RUN find . -name "*.map" -type f -delete
 
+RUN npm install -g astro
 RUN npm install
 RUN npm run build
-RUN npm install -g astro
 
 # Run application
 EXPOSE $port
