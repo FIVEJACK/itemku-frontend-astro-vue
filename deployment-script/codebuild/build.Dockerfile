@@ -2,11 +2,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY public /app/public
-COPY .astro /app/.astro
-COPY package.json /app
-COPY astro.config.mjs /app
-COPY src /app/src
+COPY . /app
 
 ARG port
 ENV envPort $port
