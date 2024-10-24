@@ -11,6 +11,9 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone'
   }),
+  server: {
+    host: true
+  },
   // output: 'hybrid',
   integrations: [vue(), tailwind()],
 });
