@@ -323,7 +323,7 @@ const title = "Hello World!";
   </head>
   <body>
     <main>
-      {!landingPageProps.isMobile ? <LandingPageTemplate landingPageProps={landingPageProps} /> : <LandingPageMobileTemplate landingPageProps={landingPageProps} />}
+      {!landingPageProps.isMobile ? <LandingPageTemplate landingPageProps={landingPageProps} client:load/> : <LandingPageMobileTemplate landingPageProps={landingPageProps} client:load/>}
     </main>
   </body>
 </html>

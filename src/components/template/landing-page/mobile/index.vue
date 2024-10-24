@@ -36,8 +36,8 @@
         />
       </div>
 
-      <div v-if="isFetchProductLoading" class="grid grid-cols-4 md:grid-cols-2 gap-4 mt-5">
-        <CardProductLoading v-for="i in 4" :key="i" />
+      <div v-if="isFetchProductLoading" class="grid grid-cols-2 gap-4 mt-5">
+        <CardProductLoading v-for="i in 2" :key="i" />
       </div>
 
       <div class="text-xs my-5 text-gray-400">{{ landingPage?.meta_description }}</div>

@@ -36,7 +36,7 @@
       />
     </div>
 
-    <div v-if="isFetchProductLoading" class="grid grid-cols-4 md:grid-cols-2 gap-4 mt-5">
+    <div v-if="isFetchProductLoading" class="grid grid-cols-4 gap-4 mt-5">
       <CardProductLoading v-for="i in 4" :key="i" />
     </div>
 
