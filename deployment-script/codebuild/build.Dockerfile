@@ -7,6 +7,7 @@ COPY dist /app/dist
 COPY .astro /app/.astro
 COPY package.json /app
 COPY astro.config.mjs /app
+COPY node_modules /app/node_modules
 
 ARG port
 ENV envPort $port
