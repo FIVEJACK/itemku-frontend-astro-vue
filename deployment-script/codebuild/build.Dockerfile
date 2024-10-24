@@ -2,10 +2,9 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-ADD public /app/public
-ADD dist /app/dist
-ADD .astro /app/.astro
-
+COPY public /app/public
+COPY dist /app/dist
+COPY .astro /app/.astro
 COPY package.json /app
 COPY astro.config.mjs /app
 
