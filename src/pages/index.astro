@@ -17,6 +17,9 @@ import { MONTH_NAME } from "@/constants/date";
 import type { IProduct } from "@/types/product";
 import LandingPageTemplate from "@/components/template/landing-page/desktop/index.vue";
 import LandingPageMobileTemplate from "@/components/template/landing-page/mobile/index.vue";
+import BottomSEOLinkPage from "@/components/landing-page/BottomSEOLinkPage.vue";
+import PriceList from "@/components/template/landing-page/PriceList.vue";
+import ReviewBanner from "@/components/landing-page/ReviewBanner.vue";
 
 export const prerender = false;
 
@@ -318,12 +321,63 @@ const title = "Hello World!";
 
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Astro uses a JSX-like syntax in it's body -->
     <title>{title}</title>
   </head>
   <body>
     <main>
-      {!landingPageProps.isMobile ? <LandingPageTemplate landingPageProps={landingPageProps} client:load/> : <LandingPageMobileTemplate landingPageProps={landingPageProps} client:load/>}
+      <div class=`"min-h-screen mx-auto bg-white ${landingPageProps.isMobile ? 'min-w-0 max-w-[1023px]' : 'px-32 md:max-w-[1440px] min-w-[600px]'}"`>
+        {!landingPageProps.isMobile ? <LandingPageTemplate landingPageProps={landingPageProps} client:load/> : <LandingPageMobileTemplate landingPageProps={landingPageProps} client:load/>}
+        <div class="space-y-4 my-5 px-2">
+          <ReviewBanner 
+            isMobile={landingPageProps.isMobile} 
+            rating={`${landingPageProps.maxSellerRating}`} 
+            reviewCount={`${landingPageProps.countSellerRating}`} 
+            productName={landingPageProps.landingPage?.meta_title ?? ''} 
+            client:visible
+          />
+          {landingPageProps.relatedItemInfoPageLinks && landingPageProps.relatedItemInfoPageLinks.length > 0 && landingPageProps.itemType?.name && (
+            <div class="mt-4">
+              <BottomSEOLinkPage
+                title={`Pilihan ${landingPageProps.itemType?.name || ''} Lainnya`}
+                productNameList={landingPageProps.relatedItemInfoPageLinks.map((link: ILandingPaageLink) => link.name)}
+                client:visible
+              />
+            </div>
+          )}
+          {landingPageProps.relatedItemTypePageLinks && landingPageProps.gameInfo && landingPageProps.relatedItemTypePageLinks.length > 0 && (
+            <div class="mt-4">
+              <BottomSEOLinkPage 
+                title={`Produk ${landingPageProps.gameInfo?.game?.game_name ?? ''} lainnya`}
+                productNameList={landingPageProps.relatedItemTypePageLinks.map((link: ILandingPaageLink) => link.name)}
+                client:visible
+              />
+            </div>
+          )}
+          {landingPageProps.relatedGameIDPageLinks && landingPageProps.relatedGameIDPageLinks.length > 0 && (
+            <div class="mt-4">
+              <BottomSEOLinkPage 
+                title={'Kategori Lainnya'}
+                productNameList={landingPageProps.relatedGameIDPageLinks.map((link: ILandingPaageLink) => link.name)}
+                client:visible
+              />
+            </div>
+          )}
+          <div class="mt-4">
+            <PriceList
+              products={landingPageProps.products}
+              exchangeRate={landingPageProps.exchangeRate}
+              regionData={landingPageProps.regionData}
+              currencySymbol={landingPageProps.currencySymbol}
+              itemType={landingPageProps.itemType}
+              priceInfos={landingPageProps.priceInfos}
+              client:visible
+            />
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
